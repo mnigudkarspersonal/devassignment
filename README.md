@@ -16,8 +16,9 @@ This is a spring boot application for rest API. This application uses JPA with h
 
 ### API Description
 
-* Create
-{code: title = Create request}
+#### Create Request
+
+```
 {
   "name": "test",
   "email": "testEmail",
@@ -33,9 +34,12 @@ This is a spring boot application for rest API. This application uses JPA with h
     }
   ]
 }
-{code}
 
-{code: title = Create response}
+```
+
+####Create response}
+
+```
 {
     "invoiceId": "cb4f0f0c-9aa4-43ce-ba1d-786c1acf5185",
     "name": "test",
@@ -56,16 +60,22 @@ This is a spring boot application for rest API. This application uses JPA with h
     "totalAmount": 23,
     "deleted": false
 }
-{code}
 
-* Get
-{code: title = Get request}
+```
+
+#### Get request}
+
+```
 {
   "invoiceId": "cb4f0f0c-9aa4-43ce-ba1d-786c1acf5185"
 }
-{code}
 
-{code: title = Get response}
+```
+
+#### Get response
+
+```
+
 {
   "invoiceId": "cb4f0f0c-9aa4-43ce-ba1d-786c1acf5185",
   "name": "test",
@@ -86,10 +96,12 @@ This is a spring boot application for rest API. This application uses JPA with h
   "totalAmount": 23,
   "deleted": false
 }
-{code}
 
-* Delete
-{code: title = Delete request}
+```
+
+#### Delete request
+
+```
 {
   "deleted": true,
   "invoiceId": "fab653e7-61f0-4394-8746-a377ef0f6dc3"
@@ -102,19 +114,24 @@ This is a spring boot application for rest API. This application uses JPA with h
   "totalAmount": 0,
   "deleted": true
 }
-{code}
 
-* Update
-{code: title = Update invoice request}
+```
+
+#### Update invoice request}
+
+```
 {
   "invoiceId": "7dfd56f8-85d5-4111-9458-33159d5b7344",
   "name": "test1",
   "email": "testEmail1@gmail.com",
   "dueDate": "2017-08-26"
 }
-{code}
 
-{code: title = Update invoice response}
+```
+
+#### Update invoice response
+
+```
 {
     "invoiceId": "7dfd56f8-85d5-4111-9458-33159d5b7344",
     "name": "test1",
@@ -122,9 +139,11 @@ This is a spring boot application for rest API. This application uses JPA with h
     "dueDate": "2017-08-26",
     "deleted": false
 }
-{code}
+```
 
-{code: title = Update item request}
+#### Update item request}
+
+```
 {
   "invoiceId": "7dfd56f8-85d5-4111-9458-33159d5b7344",
   "name": "test2",
@@ -143,9 +162,10 @@ This is a spring boot application for rest API. This application uses JPA with h
         }
     ]
 }
-{code}
+```
+#### Update item response}
 
-{code: title = Update item response}
+```
 {
     "invoiceId": "7dfd56f8-85d5-4111-9458-33159d5b7344",
     "name": "test2",
@@ -165,5 +185,4 @@ This is a spring boot application for rest API. This application uses JPA with h
     ],
     "deleted": false
 }
-{code}
-
+```
