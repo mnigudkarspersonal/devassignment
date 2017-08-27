@@ -12,25 +12,25 @@ public class InvoiceException extends RuntimeException{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private HttpStatus status;
+	private int statusCode;
 	private String message;
 
-	public InvoiceException(HttpStatus status) {
-		this.status = status;
+	public InvoiceException(int statusCode) {
+		this.statusCode = statusCode;
 	}
 
-	public InvoiceException(HttpStatus status, Throwable ex) {
-		this.status = status;
+	public InvoiceException(int statusCode, Throwable ex) {
+		this.statusCode = statusCode;
 		this.message = "Unexpected error";
 	}
 
-	public InvoiceException(HttpStatus status, String message, Throwable ex) {
-		this.status = status;
+	public InvoiceException(int statusCode, String message, Throwable ex) {
+		this.statusCode = statusCode;
 		this.message = message;
 	}
 	
-	public InvoiceException(HttpStatus status, String message) {
-		this.status = status;
+	public InvoiceException(int statusCode, String message) {
+		this.statusCode = statusCode;
 		this.message = message;
 	}
 

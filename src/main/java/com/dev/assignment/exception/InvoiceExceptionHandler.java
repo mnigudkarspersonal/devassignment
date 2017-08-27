@@ -17,8 +17,8 @@ public class InvoiceExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(EntityNotFoundException.class)
 	   protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
-	       InvoiceException error = new InvoiceException(HttpStatus.NOT_FOUND);
+	       InvoiceException error = new InvoiceException(HttpStatus.NOT_FOUND.value());
 	       error.setMessage(ex.getMessage());
-	       return new ResponseEntity<>(error, error.getStatus());
+	       return new ResponseEntity<>(error, HttpStatus.valueOf((error.getStatusCode())));
 	   }
 }

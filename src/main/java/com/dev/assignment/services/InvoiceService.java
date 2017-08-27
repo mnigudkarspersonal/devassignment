@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.apache.commons.validator.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author mnigudkar
  *
  */
+@SuppressWarnings("deprecation")
 @Service
 @Slf4j
 public class InvoiceService {
@@ -96,7 +98,7 @@ public class InvoiceService {
 		log.info("deleteInvoice called....");
 		if(invoiceInfo.getInvoiceId() == null || "".equalsIgnoreCase(invoiceInfo.getInvoiceId())) {
 			log.error("Invoice id is not present in the rquest.");;
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Invoice id is required");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Invoice id is required");
 		}
 		Invoice invoiceEntity = invoiceRepo.findByInvoiceId(invoiceInfo.getInvoiceId());
 		if(invoiceEntity == null) {
@@ -261,24 +263,30 @@ public class InvoiceService {
 	 * @param isCreate
 	 * @param invoiceInfo
 	 */
-	public void validateInvoiceModel(boolean isCreate, InvoiceModel invoiceInfo) {
+	private void validateInvoiceModel(boolean isCreate, InvoiceModel invoiceInfo) {
 		if(isCreate && (invoiceInfo.getEmail() == null || "".equalsIgnoreCase(invoiceInfo.getEmail()))) {
 			log.error("Email is required.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Email is required.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Email is required.");
 		}
+		
+		if(invoiceInfo.getEmail() != null && !isValidEmailAddress(invoiceInfo.getEmail())) {
+			log.error("Invalid email address.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Invalid email address.");
+		}
+		
 		if(!isCreate && invoiceInfo.getEmail() != null && "".equalsIgnoreCase(invoiceInfo.getEmail())) {
 			log.error("Email can't be set to empty.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Email can't be empty.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Email can't be empty.");
 		}
 		
 		if(isCreate && invoiceInfo.getDueDate() == null) {
 			log.error("Due date is required.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Due date is required.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Due date is required.");
 		}
 		
 		if((isCreate && (invoiceInfo.getItemList() == null || invoiceInfo.getItemList().length == 0))) {
 			log.error("Atleast one item is required for the invoice.");;
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Atleast one item is required for the invoice.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Atleast one item is required for the invoice.");
 		}
 		
 		if(invoiceInfo.getItemList() != null && invoiceInfo.getItemList().length > 0) {
@@ -288,33 +296,39 @@ public class InvoiceService {
 		}
 	}
 	
-	public void validateItemModel(boolean isCreate, ItemModel item) {
+	private void validateItemModel(boolean isCreate, ItemModel item) {
 		if(isCreate && (item.getDescription() == null || "".equalsIgnoreCase(item.getDescription()))) {
 			log.error("Item description is required.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Item description is required.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Item description is required.");
 		}
 		
 		if(!isCreate && item.getItemId() == null) {
 			log.error("Item id is required for update.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Item id is required for update.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Item id is required for update.");
 		}
 		
 		if(!isCreate && item.getDescription() != null && "".equalsIgnoreCase(item.getDescription())) {
 			log.error("Item description can't be empty.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Item description is required.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Item description is required.");
 		}
 		
 		if(isCreate && item.getAmount() == null) {
 			log.error("Item amount is required.");
-			throw new InvoiceException(HttpStatus.BAD_REQUEST, "Item amount is required.");
+			throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Item amount is required.");
 		}
 		if(item.getAmount() != null) {
 			try {
 				new Integer(item.getAmount());
 			} catch (NumberFormatException ex) {
 				log.error("Item amount is required to be integer.");
-				throw new InvoiceException(HttpStatus.BAD_REQUEST, "Item amount is required to be integer.");
+				throw new InvoiceException(HttpStatus.BAD_REQUEST.value(), "Item amount is required to be integer.");
 			}
 		}
+	}
+	
+	private boolean isValidEmailAddress(String email) {
+		@SuppressWarnings("deprecation")
+		boolean isValid = EmailValidator.getInstance().isValid(email);
+		return isValid;
 	}
 }
