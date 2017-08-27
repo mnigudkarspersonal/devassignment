@@ -21,7 +21,7 @@ This is a spring boot application for rest API. This application uses JPA with h
 ```
 {
   "name": "test",
-  "email": "testEmail",
+  "email": "testEmail1@gmail.com",
   "dueDate": "2017-08-26",
   "itemList": [
     {
@@ -37,13 +37,13 @@ This is a spring boot application for rest API. This application uses JPA with h
 
 ```
 
-####Create response}
+#### Create response
 
 ```
 {
     "invoiceId": "cb4f0f0c-9aa4-43ce-ba1d-786c1acf5185",
     "name": "test",
-    "email": "testEmail",
+    "email": "testEmail1@gmail.com",
     "dueDate": "2017-08-26",
     "itemList": [
         {
@@ -63,7 +63,7 @@ This is a spring boot application for rest API. This application uses JPA with h
 
 ```
 
-#### Get request}
+#### Get request
 
 ```
 {
@@ -79,7 +79,7 @@ This is a spring boot application for rest API. This application uses JPA with h
 {
   "invoiceId": "cb4f0f0c-9aa4-43ce-ba1d-786c1acf5185",
   "name": "test",
-  "email": "testEmail",
+  "email": "testEmail1@gmail.com",
   "dueDate": "2017-08-26",
   "itemList": [
     {
@@ -117,7 +117,7 @@ This is a spring boot application for rest API. This application uses JPA with h
 
 ```
 
-#### Update invoice request}
+#### Update invoice request
 
 ```
 {
@@ -139,9 +139,10 @@ This is a spring boot application for rest API. This application uses JPA with h
     "dueDate": "2017-08-26",
     "deleted": false
 }
+
 ```
 
-#### Update item request}
+#### Update item request
 
 ```
 {
@@ -162,8 +163,9 @@ This is a spring boot application for rest API. This application uses JPA with h
         }
     ]
 }
+
 ```
-#### Update item response}
+#### Update item response
 
 ```
 {
@@ -185,4 +187,5 @@ This is a spring boot application for rest API. This application uses JPA with h
     ],
     "deleted": false
 }
+
 ```
