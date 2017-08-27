@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework</groupId>
+    <artifactId>dev-assignment-service</artifactId>
+    <version>0.1.0</version>
+
+ <parent>
+        <groupId>com.intuit.payments.payschedule</groupId>
+        <artifactId>payments-schedule</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <argLine>-Xmx1024m -XX:MaxPermSize=512m</argLine>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>1.5.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>1.5.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.3</version>
+        </dependency>
+        <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.7.2</version>
+                </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.5.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.1.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>2.4.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+                <repository>
+                        <id>scm.int.rel.repo</id>
+                        <name>Central Nexus repo</name>
+                        <url>http://nexus.intuit.net/nexus/content/repositories/IBP.Intuit-Releases</url>
+                </repository>
+                <snapshotRepository>
+                        <id>scm.dev.snap.repo</id>
+                        <uniqueVersion>false</uniqueVersion>
+                        <name>Central Nexus repo</name>
+                        <url>http://nexus.intuit.net/nexus/content/repositories/IBP.Intuit-Snapshots</url>
+                </snapshotRepository>
+        </distributionManagement>
+
+        <!-- beans xmlns="http://www.springframework.org/schema/beans" 
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+                     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                                       http://www.springframework.org/schema/beans/spring-beans.xsd 
+                                                       http://www.springframework.org/schema/data/jpa
+                                                       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+             <jpa:repositories base-package="com.acme.repositories" />
+         </beans-->
+    <repositories>
+        <repository>
+          <id>spring-repo</id>
+          <name>Spring Repository</name>
+          <url>http://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
