@@ -3,9 +3,9 @@ This is a spring boot application for rest API. This application uses JPA with h
 
 ### How to build and run the application
 * Install and start mysql server.
-* Check out the code.
 * Create a database (create database dev_assignment). If the DB name is different then update spring.datasource.url property in  /resources/application.properties file. 
-* cd into the top level directory where pom.xml resides and run "mvn clean install"
+* git clone https://github.com/mnigudkarspersonal/devassignment.git
+* cd to devassignment where pom.xml resides and run "mvn clean install"
 * To start spring boot service run "mvn spring-boot:run"
 * Service creates 2 tables, invoice and item, at start up.
 * Comment out "spring.jpa.hibernate.ddl-auto=create" entry in /resources/application.properties file otherwise every service startup DB will be recreated and previous data will be lost.
